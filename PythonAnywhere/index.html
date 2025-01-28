@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+  <style>
+    /* Style for the loading GIF */
+    #loading {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    }
+    #loading img {
+      width: 100px; /* Adjust size as needed */
+      height: 100px; /* Adjust size as needed */
+    }
+
+    h1 { color: #FF5733; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 4px #666; }
+    p { color: black; font-family: Verdana, Geneva, sans-serif; letter-spacing: 1px; }
+    h2 {
+      color: blue;
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px purple;
+    }
+    body {
+      text-align: center;
+      background-image: url('/static/rizz.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #upload-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+<p> Send an Image and your email address attached </p>
+  <h1>Upload Files</h1>
+  <p>Please upload both a Proof Of Payment and a raw DNA file. The image file must be less than 2 MB and the text file must be less than 50 MB.</p>
+  <p>Complaints/Bug Reports/Reviews: dusqcomputer@gmail.com</p>
+  <h2>Upload Your Files</h2>
+  <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+    <label for="email">Enter Your Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="image">Upload Image (JPG, JPEG, PNG, max 2 MB):</label><br>
+    <input type="file" id="image" name="image" accept="image/jpeg, image/png" required><br><br>
+    <input type="submit" value="Upload">
+  </form>
+</body>
+</html>
+
