@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Upload</title>
   <style>
-    /* Style for the loading GIF */
     #loading {
       display: none;
       position: fixed;
@@ -15,8 +14,8 @@
       z-index: 1000;
     }
     #loading img {
-      width: 100px; /* Adjust size as needed */
-      height: 100px; /* Adjust size as needed */
+      width: 100px;
+      height: 100px;
     }
 
     h1 { color: #FF5733; text-transform: uppercase; font-style: italic; text-shadow: 2px 2px 4px #666; }
@@ -44,12 +43,35 @@
       pointer-events: none;
       opacity: 0.5;
     }
+
+    .file-list {
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .file-list ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .file-list ul li {
+      margin: 5px 0;
+    }
+
+    .file-list ul li span {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 <p> Send an Image and your email address attached </p>
   <h1>Upload Files</h1>
-  <p>Please upload both a Proof Of Payment and a raw DNA file. The image file must be less than 2 MB and the text file must be less than 50 MB.</p>
+  <p> The image file must be less than 2 MB and the text file must be less than 50 MB.</p>
   <p>Complaints/Bug Reports/Reviews: dusqcomputer@gmail.com</p>
   <h2>Upload Your Files</h2>
   <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
@@ -57,8 +79,29 @@
     <input type="email" id="email" name="email" required><br><br>
     <label for="image">Upload Image (JPG, JPEG, PNG, max 2 MB):</label><br>
     <input type="file" id="image" name="image" accept="image/jpeg, image/png" required><br><br>
+    <label for="message">Enter your message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here"></textarea><br><br>
     <input type="submit" value="Upload">
   </form>
+
+ <h1>Imagebank</h1>
+<div class="gallery">
+    {% for file in files %}
+    <div>
+        <img src="{{ '/static/uploads/' + file }}" alt="Uploaded Image">
+    </div>
+    {% endfor %}
+</div>
+<h2>Messages:</h2>
+<div class="message-list">
+    {% for msg in messages %}
+    <div class="message">
+        <p><strong>Email:</strong> {{ msg.email }}</p>
+        <p><strong>Message:</strong> {{ msg.message }}</p>
+    </div>
+    {% endfor %}
+</div>
+
 </body>
 </html>
 
